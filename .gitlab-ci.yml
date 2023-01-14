@@ -1,0 +1,21 @@
+# CI/CD 
+stages:
+  - deploy
+  
+deploy_development:
+  stage: deploy
+  script:
+  - "ssh ubuntu@$Server_IP 'sh file-update.sh'"
+  only: ['development']
+
+deploy_stage:
+  stage: deploy
+  script:
+  - "ssh ubuntu@$Server_IP 'sh file-update.sh'"
+  only: ['stage']
+
+deploy_production:
+  stage: deploy
+  script:
+  - "ssh ubuntu@$Prod_Server_IP 'sh file-update.sh'"
+  only: ['master']
